@@ -22,43 +22,26 @@ describe("When user is on login page, user", () => {
     it("Should be able to add a book", () => {
         cy.visit("/");
         cy.login("bropet@mail.ru", "123");
-        cy.contains("Add new").click();
-        cy.contains("Book description");
-        cy.get("#title").type("Harry Potter");
-        cy.get("#description").type(
-            "this is a story about a boy who got into the school of magic"
-        );
-        cy.get("#authors").type("J. K. Rowling");
+        cy.typeForm("The Lord of the Rings", "J. R. R. Tolkien", "J. R. R. Tolkien")
         cy.contains("Submit").click();
-        cy.contains("Harry Potter");
+        cy.contains("The Lord of the Rings");
     });
 
     it("Should not be able to add a book with empty form", () => {
         cy.visit("/");
         cy.login("bropet@mail.ru", "123");
-        cy.contains("Add new").click();
-        cy.contains("Book description");
-        cy.get("#title").type(" ");
-        cy.get("#description").type(" ");
-        cy.get("#authors").type(" ");
-        //cy.contains("Submit").click();
+        cy.typeForm(" ", " ", " ")
+        cy.contains("Submit").click();
         cy.get("#title")
             .then(($el) => $el[0].checkValidity())
             .should("be.false");
-        cy.get("#authors")
-            .then(($el) => $el[4].checkValidity())
-            .should("be.false");
+
     });
 
     it("Should be able to add a book file", () => {
         cy.visit("/");
         cy.login("bropet@mail.ru", "123");
-        cy.contains("Add new").click();
-        cy.contains("Book description");
-        cy.get("#title").type("Harry Potter");
-        cy.get("#description").type(
-            "this is a story about a boy who got into the school of magic"
-        );
+        cy.typeForm("Harry Potter", "this is a story about a boy who got into the school of magic", "J. K. Rowling")
         cy.fixture("testPicture.png").then((fileContent) => {
             cy.get("#fileCover").attachFile({
                 fileContent: fileContent.toString(),
@@ -66,13 +49,5 @@ describe("When user is on login page, user", () => {
                 mimeType: "image/png",
             });
         });
-    });
-
-    it("Should be able to add a book to favorite", () => {
-        cy.visit("/");
-        cy.login("bropet@mail.ru", "123");
-        cy.get(
-            '[href="book/71e6d64d-712e-4276-8285-babcf47a09ff"] > .h-100 > .card-footer > .btn'
-        ).click();
     });
 });

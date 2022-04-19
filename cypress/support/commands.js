@@ -32,4 +32,18 @@ Cypress.Commands.add('login', (email, password) => {
 
 });
 
+Cypress.Commands.add('typeForm', (title, description, authors) => {
+    cy.contains("Add new").click();
+    cy.contains("Book description");
+    cy.get("#title").type(title);
+    cy.get("#description").type(description);
+    //cy.get("#fileCover").attachFile(fileCover);
+    //cy.get("#fileBook").attachFile(fileBook);
+    cy.get("#authors").type(authors);
+    // cy.contains("Submit").click();
+
+});
+
+
+
 import 'cypress-file-upload';
