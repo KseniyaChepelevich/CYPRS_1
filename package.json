@@ -4,7 +4,12 @@
   "description": "first tests with Cypress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mobilTest": "cypress open --browser firefox --config-file cypress.env.json",
+    "laptopTest": "cypress open --browser chrome",
+    "cy:run:chrome": "cypress run --browser chrome --headless",
+    "cy:run:firefox": "cypress run --browser firefox --headless",
+    "cy:run:chromeMobile": "cypress run --browser chrome --config-file cypress.env.json --headed",
+    "cy:run:firefoxMobile": "cypress run --browser firefox --config-file cypress.env.json --headed"
   },
   "keywords": [
     "cypress"

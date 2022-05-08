@@ -1,4 +1,6 @@
 {
     "baseUrl": "http://localhost:3000",
-    "retries": 2
+    "retries": 1,
+    "viewportHeight": 1200,
+    "viewportWidth": 1920
 }
