@@ -12,7 +12,7 @@ describe("When user add the books", () => {
         cy.contains("The Lord of the Rings");
     });
 
-    it.only("Should not be able to add a book with empty form", () => {
+    it("Should not be able to add a book with empty form", () => {
         cy.visit("/");
         cy.login("bropet@mail.ru", "123");
         cy.typeForm(" ", " ", " ");
